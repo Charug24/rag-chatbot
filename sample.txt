@@ -1,0 +1,10 @@
+Machine Learning (ML) is a subfield of artificial intelligence that enables systems to learn from data without being explicitly programmed.
+There are three main types of machine learning: supervised, unsupervised, and reinforcement learning.
+Supervised learning uses labeled data to train models, while unsupervised learning finds patterns in unlabeled data.
+Reinforcement learning trains an agent to make decisions by rewarding desired behaviors and penalizing mistakes.
+Popular algorithms in ML include linear regression, decision trees, k-means clustering, and neural networks.
+Feature engineering is a key process where raw data is transformed into meaningful input for models.
+Overfitting occurs when a model performs well on training data but poorly on unseen data.
+Evaluation metrics like accuracy, precision, recall, and F1-score help measure model performance.
+ML is widely used in recommendation systems, fraud detection, image recognition, and natural language processing.
+Ethical concerns in ML include data privacy, algorithmic bias, and the explainability of model decisions.
