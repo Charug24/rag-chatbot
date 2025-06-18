@@ -1,24 +1,24 @@
 import requests
 
-# ========== 1. Load and index the file ==========
-file_path = "sample.txt"  # 👈 Change this to your actual file (e.g., sample.pdf, data.csv)
+# Loading the inpput file
+file_path = "sample.txt" 
 
 load_response = requests.post(
     "http://127.0.0.1:8000/load/",
     json={"file_path": file_path}
 )
 
-print("\n📁 Load Response:")
+print("Load Response:")
 print("Status Code:", load_response.status_code)
 print("Response:", load_response.json())
 
-# Stop here if load failed
+# If load failed then stop the process
 if load_response.status_code != 200:
     exit()
 
-# ========== 2. Ask a question ==========
+# Asking the question 
 question_payload = {
-    "question": "What is overfitting?",  # 👈 Change this to your question
+    "question": "What is overfitting?", 
     "top_k": 3
 }
 
