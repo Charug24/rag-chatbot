@@ -21,7 +21,7 @@ A fully containerized Question Answering system that uses **Retrieval-Augmented 
 
 ```bash
 git clone https://github.com/yourname/rag-chatbot.git
-cd rag-bot
+cd rag-chatbot
 ```
 ## Build Docker Image
 
