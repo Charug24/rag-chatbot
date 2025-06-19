@@ -40,7 +40,7 @@ def build_vectorstore_from_file(file_path: str):
     vectorstore.save_local(VECTOR_DB_PATH)
     return vectorstore
 
-# it creates and loads the vector store
+# it creates and loads the FAISS vector store
 def load_or_create_vectorstore():
     embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
     if os.path.exists(VECTOR_DB_PATH):
@@ -51,7 +51,7 @@ def load_or_create_vectorstore():
         )
     raise RuntimeError("No vectorstore found. Please call /load/ with a file first.")
 
-# llm setup 
+# llm setup using groq api as llm models like mistral can be resource intensive
 llm = ChatOpenAI(
     model_name="llama3-70b-8192",
     openai_api_key="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",
@@ -65,7 +65,7 @@ class QueryRequest(BaseModel):
     question: str
     top_k: int = 5
 
-# endpoints
+# defining the endpoints
 @app.post("/load/")
 async def load_existing_file(input_data: FilePathRequest):
     file_path = input_data.file_path
@@ -89,6 +89,6 @@ def ask_question(query: QueryRequest):
     retriever = vectorstore.as_retriever(search_kwargs={"k": query.top_k})
     docs = retriever.get_relevant_documents(query.question)
     context = "\n\n".join([doc.page_content for doc in docs])
-    prompt = f"Answer the question using the context below.\n\nContext:\n{context}\n\nQuestion: {query.question}"
+    prompt = f"Answer the question using the context below.\nContext:\n{context}\n\nQuestion: {query.question}"
     response = llm.invoke(prompt)
     return {"answer": response.content}
